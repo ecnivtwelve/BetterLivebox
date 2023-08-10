@@ -426,7 +426,7 @@
     --text: 'Wi-Fi invité';
 }
 
-.tile.wifiScheduling {
+.tile.wifiScheduling, .tile.standbyScheduling {
     --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Breezeicons-apps-48-ktimetracker.svg/120px-Breezeicons-apps-48-ktimetracker.svg.png');
     --text: 'Planificateur Wi-Fi';
 }
@@ -496,7 +496,7 @@
     --text: 'Redémarrer';
 }
 
-.orangeApps, .orangeLivebox, .orangeTv, .orangeHelp, .orangeUser, .orangeAccount, .orangeApps:before, .orangeLivebox:before, .orangeTv:before, .orangeHelp:before, .orangeUser:before, .orangeAccount:before, .orangeApps:after, .orangeLivebox:after, .orangeTv:after, .orangeHelp:after, .orangeUser:after, .orangeAccount:after {
+.orangeApps, .orangeLivebox, .orangeTv, .orangeHelp, .orangeUser, .orangeAccount, .standby, .orangeApps:before, .orangeLivebox:before, .orangeTv:before, .orangeHelp:before, .orangeUser:before, .orangeAccount:before, .standby:before, .orangeApps:after, .orangeLivebox:after, .orangeTv:after, .orangeHelp:after, .orangeUser:after, .orangeAccount:after, .standby:after {
     display: none !important;
 }
 
