@@ -1,0 +1,799 @@
+/* ==UserStyle==
+@name         BetterLivebox
+@namespace    192.168.1.1
+@version      1.0.1
+@description  Redesign complet de l'interface de la Livebox 4 et + entièrement personnalisable.
+@author       ecnivtwelve
+@homepageURL  https://github.com/ecnivtwelve/BetterLivebox
+@license      MIT
+@preprocessor default
+@var color      main-color             "Couleur par défaut"                            #f16e00
+@var text       font-family            "Police d'écriture"                             Roboto
+@var text       wallpaper-lockscreen   "Fond d'écran de verouillage (inclure url())"   url('https://images.unsplash.com/photo-1548504773-429e84f586d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80')
+@var text       wallpaper-desktop      "Fond d'écran de verouillage (inclure url())"   url('https://images.unsplash.com/photo-1517178111751-b10ed2bd1328?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80')
+==UserStyle== */
+
+@-moz-document domain("192.168.1.1") {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+    /* Couleur principale */
+    --main-color: #f16e00;
+    /* Police principale */
+    --font-family: 'Roboto';
+    /* Fond d'écran du login */
+    --wallpaper-lockscreen: url('https://images.unsplash.com/photo-1548504773-429e84f586d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80');
+    /* Fond d'écran de l'accueil */
+    --wallpaper-desktop: url('https://images.unsplash.com/photo-1517178111751-b10ed2bd1328?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+}
+
+.animated {
+    animation-duration: 0s !important;
+}
+
+.sah_dialog {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    
+    padding: 20px;
+    min-width: 400px;
+}
+
+.sah_dialog_title {
+    padding-left: 0;
+    
+    font-size: 20px;
+    line-height: 20px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    
+    visibility: hidden;
+	position: relative;
+    
+    height: fit-content;
+    
+    margin-bottom: 70px;
+}
+
+.sah_dialog_title::before {
+	visibility: visible;
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: "Se connecter à ma Livebox";
+}
+
+.sah_dialog_title::after {
+	visibility: visible;
+	position: absolute;
+	top: 28px;
+	left: 0;
+	content: "Utilisez vos identifiants Livebox pour vous connecter à l'interface d'administration.";
+    
+    font-size: 15px;
+    font-weight: 400;
+    color: #00000088;
+}
+
+.sah_dialog_body_login, .sah_dialog_body_password {
+    display: flex;
+    align-items: center;
+    background: #f0f0f0;
+    border-bottom: 2px solid #88888855;
+    padding: 12px 12px;
+    height: auto;
+    width: calc(100% - 12px * 2);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    position: relative;
+    transition: border-bottom 0.2s;
+}
+
+.sah_dialog_body_login:focus-within, .sah_dialog_body_password:focus-within {
+    border-bottom: 2px solid var(--main-color);
+}
+
+.sah_dialog_body_login_image, .sah_dialog_body_password_image {
+    display: none;
+}
+
+.sah_dialog_body_login input, .sah_dialog_body_password input {
+    padding: 0;
+    height: fit-content;
+    border: none;
+    background: none;
+    font-family: var(--font-family);
+    font-size: 16px;
+    width: 100%;
+    margin-top: 2.5px;
+}
+
+.sah_dialog_body_login input:focus, .sah_dialog_body_password input:focus {
+    outline: none;
+}
+
+.sah_dialog_body_login:before, .sah_dialog_body_password:before {
+    content: "face";
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    display: inline-block;
+    line-height: 1;
+    margin-right: 10px;
+    color: #00000079;
+}
+
+.sah_dialog_body_password:before {
+    content: "lock";
+}
+
+.sah_dialog_body .font165 {
+    display: none;
+}
+
+.sah_dialog_login_legal {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.sah_dialog_login_legal span {
+    text-align: left;
+    color: #888;
+    font-family: var(--font-family);
+}
+
+.sah_dialog_login_legal span:first-child:after {
+    content: '-ui-v2';
+}
+
+.sah_dialog_login_legal a {
+    text-align: left;
+    visibility: hidden;
+    position: relative;
+}
+
+.sah_dialog_login_legal a::before {
+	visibility: visible;
+	position: absolute;
+	top: -10px;
+	left: 0;
+	content: "Accès anticipé";
+    padding: 0px 10px;
+    background-color: #00000010;
+    font-size: 14px;
+    border-radius: 300px;
+    font-family: var(--font-family);
+    color: var(--main-color);
+}
+
+.sah_dialog_body .buttonGroup button {
+    outline: none;
+    background-color: var(--main-color);
+    color: #fff;
+    font-family: var(--font-family);
+    
+    padding: 10px 18px;
+    
+    min-width: fit-content;
+    height: fit-content;
+    
+    border-radius: 5px;
+    
+    font-size: 14px !important;
+    font-weight: 400;
+    
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    
+    transition: background-color 0.2s;
+}
+
+.sah_dialog_body .buttonGroup button:active {
+    background-color: #ff8e30;
+}
+
+.sah_dialog_body .buttonGroup button[type=button]:disabled {
+    color: #959595;
+    background-color: #f0f0f0;
+    box-shadow: none;
+}
+
+.mhsclock_time, .mhsclock_date {
+    display: none;
+}
+
+.overlay {
+    background-image: var(--wallpaper-lockscreen);
+    background-size: cover;
+    background-position:center;
+}
+
+/* accueil */
+
+.sah_ui_page {
+    background-color: transparent;
+}
+
+.tile .widget-content * {
+    font-family: var(--font-family);
+    font-size: 15px;
+}
+
+.sah_navarrow, .sah_ui_title h2, #sah_footer {
+    display: none;
+}
+
+.sah_main {
+    height: 100vh;
+    background-image: var(--wallpaper-desktop);
+    background-size: cover;
+    background-position: center;
+}
+
+.swiper-slide:not(.swiper-slide-active) {
+    display: none;
+}
+
+.sah_ui_slides {
+    all: unset;
+}
+
+.swiper-slide-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100vw - 20px * 2) !important;
+    height: 100vh !important;
+    padding: 0px 20px;
+}
+
+@media only screen and (max-width: 1300px){
+    .swiper-slide-active {
+        width: calc(100vw - 0px * 2) !important;
+        padding: 0px 0px;
+    }
+}
+
+.sah_ui_widget_grid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, 160px);
+    place-items: center;
+    justify-content: center;
+    gap: 70px;
+    
+    max-width: 1400px;
+}
+
+@media only screen and (max-width: 1500px){
+    .sah_ui_widget_grid {
+        gap: 50px;
+        row-gap: 70px;
+    }
+}
+
+@media only screen and (max-width: 1400px){
+    .sah_ui_widget_grid {
+        gap: 40px;
+        row-gap: 70px;
+    }
+}
+
+@media only screen and (max-width: 1300px){
+    .sah_ui_widget_grid {
+        row-gap: 50px;
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    .sah_ui_widget_grid {
+        row-gap: 30px;
+    }
+}
+
+.tile {
+    position: static !important;
+    display: inner-block !important;
+    margin: 0 !important;
+}
+
+.tile {
+    min-width: 140px;
+    width: fit-content !important;
+    height: fit-content !important;
+    background: none !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 5px 5px !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+    border-radius: 7px;
+    
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Gnome-colors-document-open2.svg/48px-Gnome-colors-document-open2.svg.png');
+    --text: 'Application'
+}
+
+.tile:before {
+    content: "";
+    display: block;
+    background-image: var(--image);
+    background-size: contain;
+    background-position: center;
+    width: 52px !important;
+    height: 52px !important;
+    filter: drop-shadow(0px 2px 2px #000000e5);
+}
+
+.tile:after {
+    content: var(--text);
+    color: #fff;
+    background: none;
+    font-size: 16px;
+    font-family: var(--font-family);
+    margin-bottom: 7px;
+    filter: drop-shadow(0px 1px 2px #000000e5);
+}
+
+.tile:hover {
+    background: #ffffff30 !important;
+    border: 1px solid #ffffff30 !important;
+}
+
+.widget-title-box, .widget-notification {
+    display: none;
+}
+
+.sah_header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #00000090;
+    border-bottom: 1px solid #ffffff20;
+    
+    padding: 12px 24px;
+}
+
+.sah_header_bg {
+    background: none;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 3px;
+}
+
+.sah_header_bg:before {
+    content: "Ma Livebox";
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--font-family);
+}
+
+.sah_header_bg:after {
+    content: "BetterLivebox beta v.1.00";
+    color: #ffffff99;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: var(--font-family);
+    margin-left: 8px;
+}
+
+/* chaque tuile */
+.tile.favorites {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Breezeicons-apps-32-preferences-desktop-default-applications.svg/120px-Breezeicons-apps-32-preferences-desktop-default-applications.svg.png');
+    --text: 'Favoris';
+}
+
+.tile.devicesList {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Breezeicons-devices-64-computer-laptop.svg/120px-Breezeicons-devices-64-computer-laptop.svg.png');
+    --text: 'Appareils conn.';
+}
+
+.tile.wifiAdvanced {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Breezeicons-devices-22-network-wireless-connected-75.svg/120px-Breezeicons-devices-22-network-wireless-connected-75.svg.png');
+    --text: 'Wi-Fi';
+}
+
+.tile.orangeDiagnostic {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Breezeicons-apps-48-kde-im-log-viewer.svg/120px-Breezeicons-apps-48-kde-im-log-viewer.svg.png');
+    --text: 'Diagnostics';
+}
+
+.tile.internetState {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Breezeicons-apps-32-preferences-system-network.svg/120px-Breezeicons-apps-32-preferences-system-network.svg.png');
+    --text: 'Internet';
+}
+
+.tile.televisionState {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Breezeicons-devices-64-video-television.svg/120px-Breezeicons-devices-64-video-television.svg.png');
+    --text: 'Télévision';
+}
+
+.tile.voiceAdvanced {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Breezeicons-apps-32-preferences-system-network-ldap.svg/120px-Breezeicons-apps-32-preferences-system-network-ldap.svg.png');
+    --text: 'Téléphone';
+}
+
+.tile.wifiGuest {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Breezeicons-apps-32-system-users.svg/120px-Breezeicons-apps-32-system-users.svg.png');
+    --text: 'Wi-Fi invité';
+}
+
+.tile.wifiScheduling {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Breezeicons-apps-48-ktimetracker.svg/120px-Breezeicons-apps-48-ktimetracker.svg.png');
+    --text: 'Planificateur Wi-Fi';
+}
+
+.tile.devicesHistory {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Breezeicons-apps-48-jdownloader.svg/120px-Breezeicons-apps-48-jdownloader.svg.png');
+    --text: 'Historique conn.';
+}
+
+.tile.internetConnection {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Breezeicons-apps-32-preferences-system-network-ethernet.svg/120px-Breezeicons-apps-32-preferences-system-network-ethernet.svg.png');
+    --text: 'Connexion';
+}
+
+.tile.internetRemote {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Breezeicons-apps-48-alienarena.svg/120px-Breezeicons-apps-48-alienarena.svg.png');
+    --text: 'Accès à dist.';
+}
+
+.tile.localSettings {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Breezeicons-apps-32-preferences-desktop-font.svg/120px-Breezeicons-apps-32-preferences-desktop-font.svg.png');
+    --text: 'Langue';
+}
+
+.tile.networkAdvanced {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Breezeicons-devices-22-network-wired-activated.svg/120px-Breezeicons-devices-22-network-wired-activated.svg.png');
+    --text: 'Réseau';
+}
+
+.tile.networkFirewall {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Breezeicons-apps-32-preferences-security-firewall.svg/120px-Breezeicons-apps-32-preferences-security-firewall.svg.png');
+    --text: 'Pare-feu';
+}
+
+.tile.systemBackup {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Breezeicons-apps-32-preferences-system-backup.svg/120px-Breezeicons-apps-32-preferences-system-backup.svg.png');
+    --text: 'Sauvegardes';
+}
+
+.tile.systemInformation {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Breezeicons-apps-32-help-about.svg/120px-Breezeicons-apps-32-help-about.svg.png');
+    --text: 'A propos';
+}
+
+.tile.userPassword {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Breezeicons-apps-32-preferences-security.svg/120px-Breezeicons-apps-32-preferences-security.svg.png');
+    --text: 'Mot de passe';
+}
+
+.tile.internetHotline {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Breezeicons-apps-32-preferences-desktop-text-to-speech.svg/120px-Breezeicons-apps-32-preferences-desktop-text-to-speech.svg.png');
+    --text: 'Accès assist.';
+}
+
+.tile.systemUpgrade {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Breezeicons-apps-32-yast-update.svg/120px-Breezeicons-apps-32-yast-update.svg.png');
+    --text: 'Mise à jour';
+}
+
+.tile.systemReset {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Breezeicons-apps-32-preferences-desktop-notification.svg/120px-Breezeicons-apps-32-preferences-desktop-notification.svg.png');
+    --text: 'Réinitialiser';
+}
+
+.tile.systemRestart {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Breezeicons-apps-32-system-reboot.svg/120px-Breezeicons-apps-32-system-reboot.svg.png');
+    --text: 'Redémarrer';
+}
+
+.orangeApps, .orangeLivebox, .orangeTv, .orangeHelp, .orangeUser, .orangeAccount, .orangeApps:before, .orangeLivebox:before, .orangeTv:before, .orangeHelp:before, .orangeUser:before, .orangeAccount:before, .orangeApps:after, .orangeLivebox:after, .orangeTv:after, .orangeHelp:after, .orangeUser:after, .orangeAccount:after {
+    display: none !important;
+}
+
+.tile.localLicense {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Breezeicons-apps-16-kwrite.svg/120px-Breezeicons-apps-16-kwrite.svg.png');
+    --text: 'Info. légales';
+}
+
+.tile.localSession {
+    --image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Breezeicons-apps-32-system-shutdown.svg/120px-Breezeicons-apps-32-system-shutdown.svg.png');
+    --text: 'Déconnexion';
+}
+
+/* overlays */
+
+.iframeapp {
+    --xOffset: 12.5vw;
+    --yOffset: 7.5vh;
+    
+    position: fixed;
+    position: absolute;
+    left: var(--xOffset);
+    top: calc(var(--yOffset) + 20px);
+    z-index: 1;
+    
+    width: calc(100vw - var(--xOffset) * 2);
+    height: calc(100vh - var(--yOffset) * 2);
+    
+    background-color: #EFEFEF;
+    filter: drop-shadow(0px 2px 2px #00000059);
+    border: 1px solid #00000099;
+    border-radius: 10px;
+    
+    background: url('https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/circular_progress_indicator_square_medium.gif'), #efefef;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120px;
+    
+    animation: iframeapp 0.2s;
+}
+
+@keyframes iframeapp {
+    0% {
+        transform: scale(0.95) translateY(40px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 1500px){
+    .iframeapp {
+        --xOffset: 8vw;
+        --yOffset: 7.5vh;
+    }
+}
+
+@media only screen and (max-width: 1400px){
+    .iframeapp {
+        --xOffset: 5vw;
+        --yOffset: 7.5vh;
+    }
+}
+
+.container.main-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #444;
+    
+    height: 40px;
+    
+    display : flex;
+    align-items: center;
+}
+
+.header-title {
+    font-family: var(--font-family);
+    font-size: 16px;
+    padding: 0;
+    
+    height: fit-content;
+    margin-left: 20px;
+}
+
+#app_close {
+    background: #ffffff00;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    border-radius: 300px;
+
+    margin-left: 20px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    opacity: 0.75;
+}
+
+#app_close:hover {
+    opacity: 1;
+}
+
+#app_close .translation {
+    display:none;
+}
+
+#app_close:before {
+    content: "arrow_back";
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    display: inline-block;
+    line-height: 1;
+    color: #ffffffe5;
+}
+
+#main-container, .container-content {
+    background: transparent !important;
+}
+
+input[type=checkbox] + label, button.toggleonoff {
+    background-color: #EFEFEF;
+}
+
+.container-content * {
+    font-family: var(--font-family);
+}
+
+.container-content {
+    padding-bottom: 100px;
+    
+    animation: content-tab 0.3s;
+}
+
+@keyframes content-tab {
+    0% {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+#content_template_container {
+    position: static !important;
+}
+
+.button-container input {
+    outline: none;
+    background-color: var(--main-color) !important;
+    color: #fff !important;
+    font-family: var(--font-family);
+    
+    padding: 8px 18px;
+    
+    min-width: fit-content;
+    height: fit-content;
+    
+    border-radius: 5px;
+    
+    font-size: 14px !important;
+    font-weight: 400;
+    
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    
+    transition: filter 0.2s;
+}
+
+.button-container input:hover {
+    background-color: var(--main-color);
+    filter: brightness(1.3);
+    cursor: pointer;
+}
+
+.button-container input:active {
+    background-color: var(--main-color);
+    filter: brightness(0.7);
+}
+
+.button-container #back, .button-container #cancel {
+    box-shadow: none;
+    background-color: #e5e5e5 !important;
+    color: #000000e5 !important;
+}
+
+.button-container #back:hover, .button-container #cancel:hover {
+    background-color: #e5e5e5 !important;
+    filter: brightness(0.9);
+}
+
+.button-container #back:active, .button-container #cancel:active {
+    background-color: #e5e5e5 !important;
+    filter: brightness(0.7);
+}
+
+.tab-menu {
+    background: none;
+}
+
+.tab-fixed {
+    border-color: #888888;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #88888800;
+    margin-right: 10px;
+}
+
+.tab-button span {
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 500 !important;
+}
+
+.tab-button:hover {
+    border-bottom: 2px solid #888888ff;
+}
+
+.tab-selected {
+    border-bottom: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.tab-selected:hover {
+    border-bottom: 2px solid var(--main-color);
+}
+
+.container-content {
+    overflow: hidden !important;
+    height: 100%;
+    overflow-y: auto !important;
+}
+
+.container-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+.container-content::-webkit-scrollbar-thumb {
+    background:#00000022;
+}
+
+.container-content::-webkit-scrollbar-thumb:hover {
+    background:#00000032;
+}
+
+.container-content::-webkit-scrollbar-thumb:active {
+    background:#00000042;
+}
+
+.container-content input[type='text'], .container-content input[type='password'] {
+    border: none;
+    border-bottom: 2px solid #99999999;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 0px 12px;
+    height: 35px;
+}
+
+.container-content input[type='text']:focus, .container-content input[type='password']:focus {
+    border-bottom: 2px solid var(--main-color);
+    outline: none;
+}
+
+.txtandfield-row input {
+    margin-left: 20px !important;
+}
+}
